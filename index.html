@@ -1,54 +1,222 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mine_Shop</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Formulário de Validação</title>
+    <style>
+      /* Reset básico para garantir consistência entre os navegadores */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #333;
+      }
+
+      .form-container {
+        background-color: #ffffff;
+        width: 100%;
+        max-width: 400px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 30px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .form-container:hover {
+        transform: scale(1.02);
+      }
+
+      h2 {
+        text-align: center;
+        font-size: 24px;
+        color: #444;
+        margin-bottom: 20px;
+        font-weight: 600;
+        letter-spacing: 1px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      label {
+        font-size: 14px;
+        font-weight: 500;
+        color: #555;
+        margin-bottom: 6px;
+        display: block;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        background-color: #fafafa;
+        color: #333;
+        transition: all 0.3s ease;
+      }
+
+      input:focus {
+        border-color: #4a90e2;
+        outline: none;
+        background-color: #fff;
+      }
+
+      input::placeholder {
+        color: #888;
+      }
+
+      .result {
+        font-size: 12px;
+        font-weight: 500;
+        margin-top: 4px;
+        display: block;
+      }
+
+      .result.green {
+        color: #4caf50;
+      }
+
+      .result.red {
+        color: #f44336;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #4a90e2;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background-color: #357abd;
+      }
+
+      .submit-btn:active {
+        transform: scale(0.98);
+      }
+
+      .submit-btn:disabled {
+        background-color: #ddd;
+        cursor: not-allowed;
+      }
+
+      .resultCadastrar {
+        margin-top: 15px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .resultCadastrar.green {
+        color: #4caf50;
+      }
+
+      .resultCadastrar.red {
+        color: #f44336;
+      }
+
+      /* Media query para melhorar a responsividade em dispositivos móveis */
+      @media (max-width: 480px) {
+        .form-container {
+          padding: 15px 20px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        .submit-btn {
+          font-size: 13px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <!-- MENU PRINCIPAL -->
-    <header class="menu">
-      <div class="logo">🔥 Mine_Shop</div>
-      <input type="text" id="busca" placeholder="Busque seu produto..." />
-      <div class="icones">
-        <button id="conta">👤</button>
-        <button id="favoritos">⭐</button>
-        <button id="carrinho">🛍️</button>
-      </div>
-    </header>
+    <div class="form-container">
+      <h2>Formulário de Cadastro</h2>
+      <form id="emailForm" autocomplete="off">
+        <div class="form-group">
+          <label for="dataInput">Data (dd/mm/aaaa):</label>
+          <input
+            type="text"
+            id="dataInput"
+            placeholder="Ex: 25/12/2022"
+            required
+          />
+          <div id="resultData" class="result"></div>
+        </div>
 
-    <!-- MENU CATEGORIAS -->
-    <nav class="categorias">
-      <a href="#" data-categoria="TODOS">TODOS</a>
-      <a href="#" data-categoria="ACESSÓRIOS">ACESSÓRIOS</a>
-      <a href="#" data-categoria="BONÉS">BONÉS</a>
-      <a href="#" data-categoria="CALÇAS">CALÇAS</a>
-      <a href="#" data-categoria="CAMISETAS">CAMISETAS</a>
-      <a href="#" data-categoria="COLLABS">COLLABS</a>
-      <a href="#" data-categoria="CORTA VENTO">CORTA VENTO</a>
-      <a href="#" data-categoria="JAQUETAS">JAQUETAS</a>
-      <a href="#" data-categoria="OUTLET">OUTLET</a>
-      <a href="#" data-categoria="MOLETOM">MOLETOM</a>
-      <a href="#" data-categoria="BERMUDAS">BERMUDAS</a>
-    </nav>
+        <div class="form-group">
+          <label for="nomeInput">Nome:</label>
+          <input type="text" id="nomeInput" placeholder="Seu nome" required />
+          <div id="resultNome" class="result"></div>
+        </div>
 
-    <!-- DESTAQUE -->
-    <section class="destaque">
-      <img src="https://i.imgur.com/nPKv9Mv.png" alt="Camisetas Fire" />
-      <div class="info">
-        <button class="ver-mais" data-categoria="CAMISETAS">VER MAIS</button>
-      </div>
-    </section>
+        <div class="form-group">
+          <label for="emailInput">E-mail:</label>
+          <input
+            type="email"
+            id="emailInput"
+            placeholder="Seu e-mail"
+            required
+          />
+          <div id="resultMessage" class="result"></div>
+        </div>
 
-    <!-- FAIXA DE FRETE GRÁTIS -->
-    <div class="frete-gratis">
-      <strong>FRETE GRÁTIS</strong> acima de <span class="valor">R$99,90</span>
+        <div class="form-group">
+          <label for="senha">Senha:</label>
+          <input type="password" id="senha" placeholder="Senha" required />
+          <div id="resultPassword" class="result"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmasenha">Confirmar Senha:</label>
+          <input
+            type="password"
+            id="confirmasenha"
+            placeholder="Confirmar senha"
+            required
+          />
+          <div id="resultConfirmPassword" class="result"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="numberInput">Número de telefone:</label>
+          <input
+            type="text"
+            id="numberInput"
+            placeholder="(XX) XXXXX-XXXX"
+            required
+          />
+          <div id="resultNumber" class="result"></div>
+        </div>
+
+        <button type="submit" class="submit-btn">Cadastrar</button>
+      </form>
+
+      <div id="resultCadastrar" class="resultCadastrar"></div>
     </div>
 
-    <!-- PRODUTOS -->
-    <section id="produtos" class="produtos"></section>
-
-    <script src="script.js"></script>
+    <script src="validacao.js"></script>
   </body>
 </html>
